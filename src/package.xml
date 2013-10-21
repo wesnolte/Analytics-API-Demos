@@ -17,8 +17,8 @@
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>*</members>
-        <name>StaticResource</name>
+        <members>Analytics_API_Demos/Stacked_Bar_Chart</members>
+        <name>Report</name>
     </types>
     <version>26.0</version>
 </Package>
