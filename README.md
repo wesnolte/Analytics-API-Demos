@@ -4,3 +4,6 @@ Inspired a post by the [PM for Analytics](https://medium.com/p/c87517ab52b1) at 
 
 ## Demo 1 - Stacked Barchart (Matrix Report)
 ![Example Bar Chart](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/stacked-bar-chart.png)
+
+## Demo 2 - Waterfall Chart (Summary Report)
+![Example Waterfall Chart](http://i.imgur.com/9DFvPsc.png)
