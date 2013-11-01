@@ -1,4 +1,4 @@
-<apex:page sidebar="false" showHeader="false">
+<apex:page showheader="false">
  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
  <script>
@@ -11,7 +11,7 @@
         beforeSend: function(xhr) {
           xhr.setRequestHeader('Authorization', 'Bearer {!$Api.Session_ID}');
         },
-        url: "/services/data/v29.0/analytics/reports/{!$CurrentPage.parameters.reportId}",
+        url: "/services/data/v29.0/analytics/reports/{!$CurrentPage.parameters.id}",
         dataType:"json",
         async: false
         }).responseText);
