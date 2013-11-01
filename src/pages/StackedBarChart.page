@@ -1,0 +1,51 @@
+<apex:page showheader="false">
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+ <script>
+
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);    
+
+  function drawChart() {
+    var jsonData = JSON.parse($.ajax({
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('Authorization', 'Bearer {!$Api.Session_ID}');
+        },
+        url: "/services/data/v29.0/analytics/reports/{!$CurrentPage.parameters.id}",
+        dataType:"json",
+        async: false
+        }).responseText);
+
+    var chartData = new google.visualization.DataTable();
+
+    chartData.addColumn('string', 'Stage');
+
+    $.each(jsonData.groupingsDown.groupings, function(di, de) {
+      chartData.addColumn('number', de.label);
+    });
+
+    $.each(jsonData.groupingsAcross.groupings, function(ai, ae) {    
+      var values = [];
+      values.push(ae.label);
+
+      $.each(jsonData.groupingsDown.groupings, function(di, de) {
+
+        values.push(jsonData.factMap[de.key+"!"+ae.key].aggregates[0].value);
+      });
+
+      chartData.addRow(values);
+    });
+
+    var options = {
+      title: jsonData.attributes.reportName,
+      vAxis: {title: jsonData.reportMetadata.groupingsAcross[0].name},
+      isStacked: true
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart'));
+    chart.draw(chartData, options);
+  }
+
+</script>
+<div id="chart" style="width: 900px; height: 500px;"></div>
+</apex:page>
