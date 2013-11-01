@@ -19,7 +19,12 @@
 	<types>
 		<members>Analytics_API_Demos/Stacked_Bar_Chart</members>
 		<members>Analytics_API_Demos/Opportunity_Pipeline</members>
+		<members>Analytics_API_Demos/Waterfall_Chart</members>
 		<name>Report</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>StaticResource</name>
 	</types>
 	<version>28.0</version>
 </Package>
