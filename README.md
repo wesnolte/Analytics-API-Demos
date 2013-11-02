@@ -4,7 +4,6 @@ Inspired a post by the [PM for Analytics](https://medium.com/p/c87517ab52b1) at 
 
 ## Demo 1 - Stacked Bar Chart (Matrix Report)
 ![Example Bar Chart](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/stacked-bar-chart.png)
-<<<<<<< HEAD
 - Uses the Google Charting API - Bar Chart
 
 ## Demo 2 - Pie Chart (Summary Report)
