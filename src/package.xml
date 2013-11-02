@@ -2,29 +2,13 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
 		<members>*</members>
-		<name>ApexClass</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ApexComponent</name>
-	</types>
-	<types>
-		<members>*</members>
 		<name>ApexPage</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ApexTrigger</name>
 	</types>
 	<types>
 		<members>Analytics_API_Demos/Stacked_Bar_Chart</members>
 		<members>Analytics_API_Demos/Opportunity_Pipeline</members>
 		<members>Analytics_API_Demos/Waterfall_Chart</members>
 		<name>Report</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>StaticResource</name>
 	</types>
 	<version>28.0</version>
 </Package>

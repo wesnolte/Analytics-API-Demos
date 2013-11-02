@@ -6,4 +6,5 @@ Inspired a post by the [PM for Analytics](https://medium.com/p/c87517ab52b1) at 
 ![Example Bar Chart](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/stacked-bar-chart.png)
 
 ## Demo 2 - Waterfall Chart (Summary Report)
+Standard Opportunity Pipeline report using High Chart's Waterfall Chart. Shows sum value of opportunities at what stage of the sales process.
 ![Example Waterfall Chart](http://i.imgur.com/9DFvPsc.png)

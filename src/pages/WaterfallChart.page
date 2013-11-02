@@ -1,40 +1,40 @@
-<apex:page showHeader="false" title="Analytics API - Waterfall" standardStylesheets="false">
+<apex:page showHeader="false" title="Analytics API - Waterfall">
 
 	<apex:includeScript value="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" />
-
-	<apex:includeScript value="{!URLFOR($Resource.AnalyticsAPI, 'highcharts.js')}" />
-	<apex:includeScript value="{!URLFOR($Resource.AnalyticsAPI, 'highcharts-more.js')}" />
-	<apex:includeScript value="{!URLFOR($Resource.AnalyticsAPI, 'exporting.js')}" />
-	<apex:includeScript value="{!URLFOR($Resource.AnalyticsAPI, 'ForceTK.js')}"  />
+	<apex:includeScript value="http://code.highcharts.com/highcharts.js" />
+	<apex:includeScript value="http://code.highcharts.com/highcharts-more.js" />
+	<apex:includeScript value="http://code.highcharts.com/modules/exporting.js" />
+	
 	<script>
 		$(document).ready(function() {
 
+			// the id of the Salesforce report
 		    var reportId = '{!$CurrentPage.parameters.reportId}';
 		    
 		    if (reportId) {
-	            // Get an instance of the REST API client and set the session ID
-	            var client = new forcetk.Client();
-	            client.setSessionToken('{!$Api.Session_ID}');
 	            
 	            // We'll keep the report data around for the life of the page
 	            var report = null;
-	    
-	            // Run the report synchronously
-	            client.ajax("/v29.0/analytics/reports/"+reportId+"?includeDetails=true", function(response){
-	                // Save the report data
-	                report = response;
-	                console.log(report);
-	                
-	                // We're done with the status
-	                $("#statusText").hide();
-	                
-	               	renderHighChart(report);
-	                
-	            }, function(jqXHR, textStatus, errorThrown){
-	                // uh-oh
-	                $("#statusText").text("Error: "+jqXHR.status+" "+jqXHR.statusText);
-	            });
 	            
+	            // Fetch the JSON data representing the the report
+			    var jsonData = JSON.parse($.ajax({
+			        beforeSend: function(xhr) {
+			          xhr.setRequestHeader('Authorization', 'Bearer {!$Api.Session_ID}');
+			    	},
+			        // You'll need a URL parameter key called "reportid" that has a Summary Report id value
+			        url: "/services/data/v29.0/analytics/reports/{!$CurrentPage.parameters.reportId}",
+			        dataType:"json",
+			        async: false
+		        	}).responseText);
+	    
+				report = jsonData;
+	                
+                // We're done with the status
+                $("#statusText").hide();
+                
+                // pass the Salesforce JSON report response to the render chart method
+               	renderHighChart(report);
+
 	        } else {
 	            $("#statusText").text("Need a reportId!");
 	        }
@@ -43,6 +43,7 @@
 		
 		function renderHighChart(report){
 		
+			// The High Charts options
 			$('#container').highcharts({
 		        chart: {
 		            type: 'waterfall'
@@ -91,6 +92,7 @@
 		
 		}
 		
+		// Build the array of data from the report, to use for the chart
 		function getDataArray(report){
 			var dataArray = [];
 			$.each(report.groupingsDown.groupings, function(index, grouping) {
