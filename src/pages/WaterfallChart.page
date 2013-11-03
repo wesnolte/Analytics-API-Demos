@@ -8,86 +8,86 @@
 	<script>
 		$(document).ready(function() {
 
-			// the id of the Salesforce report
-		    var reportId = '{!$CurrentPage.parameters.reportId}';
-		    
-		    if (reportId) {
-	            
-	            // We'll keep the report data around for the life of the page
-	            var report = null;
-	            
-	            // Fetch the JSON data representing the the report
-			    var jsonData = JSON.parse($.ajax({
-			        beforeSend: function(xhr) {
-			          xhr.setRequestHeader('Authorization', 'Bearer {!$Api.Session_ID}');
-			    	},
-			        // You'll need a URL parameter key called "reportid" that has a Summary Report id value
-			        url: "/services/data/v29.0/analytics/reports/{!$CurrentPage.parameters.reportId}",
-			        dataType:"json",
-			        async: false
-		        	}).responseText);
-	    
-				report = jsonData;
-	                
-                // We're done with the status
-                $("#statusText").hide();
-                
-                // pass the Salesforce JSON report response to the render chart method
-               	renderHighChart(report);
+      // the id of the Salesforce report
+      var reportId = '{!$CurrentPage.parameters.id}';
+      
+      if (reportId) {
+            
+        // We'll keep the report data around for the life of the page
+        var report = null;
+        
+        // Fetch the JSON data representing the the report
+  	    var jsonData = JSON.parse($.ajax({
+	        beforeSend: function(xhr) {
+	          xhr.setRequestHeader('Authorization', 'Bearer {!$Api.Session_ID}');
+	    	  },
+	        // You'll need a URL parameter key called "reportid" that has a Summary Report id value
+	        url: "/services/data/v29.0/analytics/reports/{!$CurrentPage.parameters.id}",
+	        dataType:"json",
+	        async: false
+        	}).responseText);
+  
+		      report = jsonData;
+              
+          // We're done with the status
+          $("#statusText").hide();
+          
+          // pass the Salesforce JSON report response to the render chart method
+         	renderHighChart(report);
 
-	        } else {
-	            $("#statusText").text("Need a reportId!");
-	        }
+        } else {
+          $("#statusText").text("Need a report Id!");
+        }
 
-		});
+    });
 		
 		function renderHighChart(report){
 		
 			// The High Charts options
 			$('#container').highcharts({
-		        chart: {
-		            type: 'waterfall'
-		        },
-		
-		        title: {
-		            text: report.reportMetadata.name
-		        },
-		
-		        xAxis: {
-		            type: 'category'
-		        },
-		
-		        yAxis: {
-		            title: {
-		                text: 'GBP'
-		            }
-		        },
-		
-		        legend: {
-		            enabled: false
-		        },
-		
-		        tooltip: {
-		            pointFormat: '<b>${point.y:,.2f}</b> GBP'
-		        },
-		
-		        series: [{
-		            upColor: Highcharts.getOptions().colors[2],
-		            color: Highcharts.getOptions().colors[3],
-		            data: getDataArray(report),
-		            dataLabels: {
-		                enabled: true,
-		                formatter: function () {
-		                    return Highcharts.numberFormat(this.y / 1000, 0, ',') + 'k';
-		                },
-		                style: {
-		                    color: '#FFFFFF',
-		                    fontWeight: 'bold',
-		                    textShadow: '0px 0px 3px black'
-		                }
-		            },
-		            pointPadding: 0
-		        }]
+        chart: {
+          type: 'waterfall'
+        },
+
+        title: {
+          text: report.reportMetadata.name
+        },
+
+        xAxis: {
+          type: 'category'
+        },
+
+        yAxis: {
+          title: {
+            text: 'GBP'
+          }
+        },
+
+        legend: {
+          enabled: false
+        },
+
+        tooltip: {
+          pointFormat: '<b>${point.y:,.2f}</b> GBP'
+        },
+
+        series: [{
+          upColor: Highcharts.getOptions().colors[2],
+          color: Highcharts.getOptions().colors[3],
+          data: getDataArray(report),
+          dataLabels: {
+            enabled: true,
+            formatter: function () {
+              return Highcharts.numberFormat(this.y / 1000, 0, ',') + 'k';
+            },
+            style: {
+              color: '#FFFFFF',
+              fontWeight: 'bold',
+              textShadow: '0px 0px 3px black'
+            }
+          },
+            pointPadding: 0
+          }]
 		    });
 		
 		}
@@ -96,9 +96,9 @@
 		function getDataArray(report){
 			var dataArray = [];
 			$.each(report.groupingsDown.groupings, function(index, grouping) {
-                dataArray.push({"name":grouping.label, "y": report.factMap[index.toString()+"!T"].aggregates[0].value});
-            });
-           	return dataArray;
+          dataArray.push({"name":grouping.label, "y": report.factMap[index.toString()+"!T"].aggregates[0].value});
+        });
+       	return dataArray;
 		}
 	</script>
 	
