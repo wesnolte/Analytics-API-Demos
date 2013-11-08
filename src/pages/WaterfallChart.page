@@ -22,7 +22,7 @@
 	          xhr.setRequestHeader('Authorization', 'Bearer {!$Api.Session_ID}');
 	    	  },
 	        // You'll need a URL parameter key called "reportid" that has a Summary Report id value
-	        url: "/services/data/v29.0/analytics/reports/{!$CurrentPage.parameters.id}",
+	        url: "/services/data/v29.0/analytics/reports/" + reportId,
 	        dataType:"json",
 	        async: false
         	}).responseText);
