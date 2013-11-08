@@ -16,3 +16,8 @@ Standard Opportunity Pipeline report using High Chart's Waterfall Chart. Shows s
 ![Example Waterfall Chart](http://i.imgur.com/9DFvPsc.png)
 - Uses the High Charts API - Waterfall Chart
 
+## Demo 4 - Spiderweb Chart (Summary Report)
+Spiderweb chart which shows activities tracked by resources.
+![Example Spiderweb Chart](http://i.imgur.com/OVzWXyX.png)
+- Uses the High Charts API - Spiderweb Chart
+
