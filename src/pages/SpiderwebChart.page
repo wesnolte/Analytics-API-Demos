@@ -9,7 +9,7 @@
 		$(document).ready(function() {
 
 			// the id of the Salesforce report
-		    var reportId = '{!$CurrentPage.parameters.reportId}';
+		    var reportId = '{!$CurrentPage.parameters.Id}';
 		    
 		    if (reportId) {
 	            
@@ -28,9 +28,7 @@
 		        	}).responseText);
 	    
 				report = jsonData;
-				
-				console.log(report);
-	                
+				 
                 // We're done with the status
                 $("#statusText").hide();
                 
@@ -111,7 +109,6 @@
 			$.each(grouping.groupings, function(indexLevel2, groupingLevel2) {
 				data.push(report.factMap[index.toString() + '_' + indexLevel2.toString()+"!T"].aggregates[0].value)
 			});
-			console.log(data);
 			return data;
 		}
 		

@@ -9,7 +9,7 @@
 		$(document).ready(function() {
 
 			// the id of the Salesforce report
-		    var reportId = '{!$CurrentPage.parameters.reportId}';
+		    var reportId = '{!$CurrentPage.parameters.Id}';
 		    
 		    if (reportId) {
 	            
