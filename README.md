@@ -14,3 +14,8 @@ Inspired a post by the [PM for Analytics](https://medium.com/p/c87517ab52b1) at 
 Standard Opportunity Pipeline report using High Chart's Waterfall Chart. Shows sum value of opportunities at what stage of the sales process.
 ![Example Waterfall Chart](http://i.imgur.com/9DFvPsc.png)
 - Uses the High Charts API - Waterfall Chart
+
+## Demo 4 - Spiderweb Chart (Summary Report)
+Spiderweb chart which shows activities tracked by resources.
+![Example Spiderweb Chart](http://i.imgur.com/OVzWXyX.png)
+- Uses the High Charts API - Spiderweb Chart
