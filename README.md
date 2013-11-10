@@ -4,7 +4,7 @@ Inspired by a post by the [PM for Analytics](https://medium.com/p/c87517ab52b1) 
 
 #Google Charting API Demos
 ##Stacked Bar Chart (Matrix Report)
-![Example Bar Chart](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/stacked-bar-chart.png)
+![Example Bar Chart](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/stacked-bar-chart-jquery.png)
 
 ##Pie Chart (Summary Report)
 ![Example Bar Chart](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/pie-chart.png)
@@ -17,3 +17,7 @@ Standard Opportunity Pipeline report using High Chart's Waterfall Chart. Shows s
 ##Spiderweb Chart (Summary Report)
 Spiderweb chart which shows activities tracked by resources.
 ![Example Spiderweb Chart](http://i.imgur.com/OVzWXyX.png)
+
+#NVD3 Demos
+##Stacked Bar Chart (Matrix Report)
+![Example Bar Chart](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/stacked-bar-chart-nvd3.png)
