@@ -15,8 +15,8 @@ Standard Opportunity Pipeline report using High Chart's Waterfall Chart. Shows s
 ![Example Waterfall Chart](http://i.imgur.com/9DFvPsc.png)
 
 ##Spiderweb Chart (Summary Report)
-Spiderweb chart which shows activities tracked by resources.
-![Example Spiderweb Chart](http://i.imgur.com/OVzWXyX.png)
+Spiderweb chart which shows opportunities by owner and stage, with summed values.
+![Example Spiderweb Chart](http://i.imgur.com/i5KqWLt.png)
 
 #NVD3 Demos
 ##Stacked Bar Chart (Matrix Report)
