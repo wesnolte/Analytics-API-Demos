@@ -1,4 +1,4 @@
-<apex:page showHeader="false" title="Analytics API - Waterfall">
+<apex:page showHeader="false" title="Analytics API - Spiderweb">
 
 	<apex:includeScript value="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" />
 	<apex:includeScript value="http://code.highcharts.com/highcharts.js" />
@@ -28,7 +28,7 @@
 		        	}).responseText);
 	    
 				report = jsonData;
-	                
+				 
                 // We're done with the status
                 $("#statusText").hide();
                 
@@ -45,50 +45,48 @@
 		
 			// The High Charts options
 			$('#container').highcharts({
-		        chart: {
-		            type: 'waterfall'
-		        },
-		
-		        title: {
-		            text: report.reportMetadata.name
-		        },
-		
-		        xAxis: {
-		            type: 'category'
-		        },
-		
-		        yAxis: {
-		            title: {
-		                text: 'GBP'
-		            }
-		        },
-		
-		        legend: {
-		            enabled: false
-		        },
-		
-		        tooltip: {
-		            pointFormat: '<b>${point.y:,.2f}</b> GBP'
-		        },
-		
-		        series: [{
-		            upColor: Highcharts.getOptions().colors[2],
-		            color: Highcharts.getOptions().colors[3],
-		            data: getDataArray(report),
-		            dataLabels: {
-		                enabled: true,
-		                formatter: function () {
-		                    return Highcharts.numberFormat(this.y / 1000, 0, ',') + 'k';
-		                },
-		                style: {
-		                    color: '#FFFFFF',
-		                    fontWeight: 'bold',
-		                    textShadow: '0px 0px 3px black'
-		                }
-		            },
-		            pointPadding: 0
-		        }]
-		    });
+	            
+			    chart: {
+			        polar: true,
+			        type: 'line'
+			    },
+			    
+			    title: {
+			        text: report.reportMetadata.name,
+			        x: -80
+			    },
+			    
+			    pane: {
+			    	size: '80%'
+			    },
+			    
+			    xAxis: {
+			        categories: getCategories(report),
+			        tickmarkPlacement: 'on',
+			        lineWidth: 0
+			    },
+			        
+			    yAxis: {
+			        gridLineInterpolation: 'polygon',
+			        lineWidth: 0,
+			        min: 0
+			    },
+			    
+			    tooltip: {
+			    	shared: true,
+			        pointFormat: '<span style="color:{series.color}">{series.name}: <b>£{point.y:,.0f}</b><br/>'
+			    },
+			    
+			    legend: {
+			        align: 'right',
+			        verticalAlign: 'top',
+			        y: 70,
+			        layout: 'vertical'
+			    },
+			    
+			    series: getDataArray(report)
+			
+			});
 		
 		}
 		
@@ -96,14 +94,36 @@
 		function getDataArray(report){
 			var dataArray = [];
 			$.each(report.groupingsDown.groupings, function(index, grouping) {
-                dataArray.push({"name":grouping.label, "y": report.factMap[index.toString()+"!T"].aggregates[0].value});
+                dataArray.push({
+                	"name": grouping.label, 
+                	"data": getDataForGroup(report, index, grouping), 
+                	"pointPlacement": 'on'
+                });
             });
            	return dataArray;
+		}
+		
+		// Method which gets the activity values for each resource
+		function getDataForGroup(report, index, grouping){
+			var data = [];
+			$.each(grouping.groupings, function(indexLevel2, groupingLevel2) {
+				data.push(report.factMap[index.toString() + '_' + indexLevel2.toString()+"!T"].aggregates[0].value)
+			});
+			return data;
+		}
+		
+		// Method to obtain the activity categories
+		function getCategories(report){
+			var categories = [];
+			$.each(report.groupingsDown.groupings[0].groupings, function(index, grouping) {
+				categories.push(grouping.label);
+			});
+			return categories;
 		}
 	</script>
 	
 	<h1 id="statusText">Loading data...</h1>
 	
-	<div id="container" style="min-width: 310px; max-width: 600px; height: 400px; margin: 50px auto"></div>
+	<div id="container" style="min-width: 500px; max-width: 800px; height: 600px; margin: 50px auto"></div>
 	
 </apex:page>

@@ -51,7 +51,7 @@
         <field>STAGE_NAME</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Opportunity Pipeline</name>
+    <name>Pie Chart</name>
     <params>
         <name>open</name>
         <value>open</value>

@@ -1,7 +1,7 @@
-<apex:page showheader="false">
+<apex:page showheader="false"> 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>	
-  <script>
+  <script> 
 
     google.load("visualization", "1", {packages:["corechart"]});
     google.setOnLoadCallback(drawChart);    
