@@ -3,14 +3,18 @@
  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
  <script>
 
+  /** Load the Google Charting library **/
   google.load("visualization", "1", {packages:["corechart"]});
   google.setOnLoadCallback(drawChart);    
 
   function drawChart() {
+
+    /** Fetch the JSON data representing the the report **/
     var jsonData = JSON.parse($.ajax({
         beforeSend: function(xhr) {
           xhr.setRequestHeader('Authorization', 'Bearer {!$Api.Session_ID}');
         },
+        /** You'll need a URL parameter key called "id" that has a Summary Report id value **/
         url: "/services/data/v29.0/analytics/reports/{!$CurrentPage.parameters.id}",
         dataType:"json",
         async: false

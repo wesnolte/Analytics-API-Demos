@@ -1,7 +1,7 @@
-<apex:page showheader="false">
+<apex:page showheader="false"> 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>	
-  <script>
+  <script> 
 
     google.load("visualization", "1", {packages:["corechart"]});
     google.setOnLoadCallback(drawChart);    
@@ -18,13 +18,8 @@
           async: false
           }).responseText);
 
-      console.log(jsonData);
-
       // Metadata for the aggregate column
       var columnInfo = jsonData.reportExtendedMetadata.aggregateColumnInfo[jsonData.reportMetadata.aggregates[column]];
-
-      console.log('ColumnInfo: ');
-      console.log(columnInfo);
 
       // Legends (not shown on pie chart)
       var dataArray = [[
@@ -32,12 +27,10 @@
           columnInfo.label
       ]];
 
-      console.log('Groupings down: ');
-      console.log(jsonData.reportMetadata.groupingsDown[column]);
-
       // Iterate through summary data
       $.each(jsonData.groupingsDown.groupings, function(index, grouping) {
-          dataArray.push([grouping.label, jsonData.factMap[index.toString()+"!T"].aggregates[column].value]);
+
+          dataArray.push([grouping.label, jsonData.factMap[index.toString()+"!T"].aggregates[3].value]);
       });
 
       var data = google.visualization.arrayToDataTable(dataArray);
@@ -46,13 +39,6 @@
           title: jsonData.attributes.reportName + ": " + columnInfo.label,
           is3D: true,
       };      
-
-      if (columnInfo.dataType === "currency") {
-          var formatter = new google.visualization.NumberFormat({
-              prefix: '$'
-          });
-          formatter.format(data, 1);
-      }
 
       // Create and draw the chart
       var chart = new google.visualization.PieChart(document.getElementById('piechart'));
