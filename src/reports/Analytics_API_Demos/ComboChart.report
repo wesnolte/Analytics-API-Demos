@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <aggregates>
-        <calculatedFormula>Account.Opps_Amount__c:SUM</calculatedFormula>
+        <calculatedFormula>AMOUNT:SUM</calculatedFormula>
         <datatype>number</datatype>
         <developerName>FORMULA1</developerName>
         <downGroupingContext>ACCOUNT_NAME</downGroupingContext>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
-        <masterLabel>Target</masterLabel>
+        <masterLabel>All Opportunities Amount</masterLabel>
         <scale>2</scale>
     </aggregates>
     <aggregates>
@@ -17,7 +17,7 @@
         <downGroupingContext>ACCOUNT_NAME</downGroupingContext>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
-        <masterLabel>Actual</masterLabel>
+        <masterLabel>Closed Won Opportunities</masterLabel>
         <scale>2</scale>
     </aggregates>
     <chart>
@@ -52,6 +52,11 @@
             <column>ACCOUNT_NAME</column>
             <operator>notEqual</operator>
             <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>STAGE_NAME</column>
+            <operator>notEqual</operator>
+            <value>Closed Lost</value>
         </criteriaItems>
     </filter>
     <format>Summary</format>
