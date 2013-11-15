@@ -11,11 +11,11 @@ Inspired by a post by the [PM for Analytics](https://medium.com/p/c87517ab52b1) 
 
 ##Bubble Chart (Summary Report)
 Bubble chart showing all the open opportunities and the numbers of days since the stage hasn't changed. The bigger the bubble is , the bigger the number of days.
-![Example Bubble Chart](https://www.dropbox.com/s/t3pdt4ml7oo0o2a/BubbleChart.png)
+![Example Bubble Chart](https://dl.dropboxusercontent.com/s/t3pdt4ml7oo0o2a/BubbleChart.png)
 
 ##Combo Chart (Summary Report)
 Combo chart showing the value of all opportunies agains the total amount of the closed won ones.
-![Example Combo Chart](https://www.dropbox.com/s/v6zbxoet45q1j7b/ComboChart.png)
+![Example Combo Chart](https://dl.dropboxusercontent.com/s/v6zbxoet45q1j7b/ComboChart.png)
 
 #Highchart Demos
 ##Waterfall Chart (Summary Report)
