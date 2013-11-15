@@ -9,6 +9,14 @@ Inspired by a post by the [PM for Analytics](https://medium.com/p/c87517ab52b1) 
 ##Pie Chart (Summary Report)
 ![Example Bar Chart](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/pie-chart.png)
 
+##Bubble Chart (Summary Report)
+Bubble chart showing all the open opportunities and the numbers of days since the stage hasn't changed. The bigger the bubble is , the bigger the number of days.
+![Example Bubble Chart](https://www.dropbox.com/s/t3pdt4ml7oo0o2a/BubbleChart.png)
+
+##Combo Chart (Summary Report)
+Combo chart showing the value of all opportunies agains the total amount of the closed won ones.
+![Example Combo Chart](https://www.dropbox.com/s/v6zbxoet45q1j7b/ComboChart.png)
+
 #Highchart Demos
 ##Waterfall Chart (Summary Report)
 Standard Opportunity Pipeline report using High Chart's Waterfall Chart. Shows sum value of opportunities at what stage of the sales process.
