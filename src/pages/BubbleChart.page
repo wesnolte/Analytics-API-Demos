@@ -1,14 +1,15 @@
-<apex:page showheader="false">
+<apex:page showheader="false" controller="BubbleChartController">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>   
   <script>
 
+	// Load the Google Charting library
     google.load("visualization", "1", {packages:["corechart"]});
     google.setOnLoadCallback(drawChart);    
   
     function drawChart() {
 
-
+	 // Fetch the JSON data representing the report
       var jsonData = JSON.parse($.ajax({
           beforeSend: function(xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer {!$Api.Session_ID}');
@@ -18,7 +19,7 @@
           async: false
           }).responseText);
 
-
+	// create the array using the JSON data and report
       var dataArray = [[
           jsonData.reportExtendedMetadata.groupingColumnInfo[jsonData.reportMetadata.groupingsDown[1].name].label,
           jsonData.reportExtendedMetadata.aggregateColumnInfo[jsonData.reportMetadata.aggregates[0]].label,
