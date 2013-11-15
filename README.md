@@ -6,6 +6,9 @@ Inspired by a post by the [PM for Analytics](https://medium.com/p/c87517ab52b1) 
 ##Stacked Bar Chart (Matrix Report)
 ![Example Bar Chart](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/stacked-bar-chart-jquery.png)
 
+##Geomap Chart (Summary Report)
+![Example Geomap Chart](http://i.imgur.com/fr6hFpx.png)
+
 ##Pie Chart (Summary Report)
 ![Example Bar Chart](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/pie-chart.png)
 
