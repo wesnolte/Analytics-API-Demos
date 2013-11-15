@@ -10,8 +10,8 @@ Inspired by a post by the [PM for Analytics](https://medium.com/p/c87517ab52b1) 
 ![Example Bar Chart](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/pie-chart.png)
 
 ##Geomap Chart (Summary Report)
-![Example Geomap Chart](http://i.imgur.com/fr6hFpx.png)
 Geomap chart which shows closed Opportunity revenue, summarised by country.
+![Example Geomap Chart](http://i.imgur.com/fr6hFpx.png)
 
 #Highchart Demos
 ##Waterfall Chart (Summary Report)
