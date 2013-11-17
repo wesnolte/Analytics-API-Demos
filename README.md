@@ -9,6 +9,10 @@ Inspired by a post by the [PM for Analytics](https://medium.com/p/c87517ab52b1) 
 ##Pie Chart (Summary Report)
 ![Example Bar Chart](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/pie-chart.png)
 
+##Geomap Chart (Summary Report)
+Geomap chart which shows closed Opportunity revenue, summarised by country.
+![Example Geomap Chart](http://i.imgur.com/fr6hFpx.png)
+
 #Highchart Demos
 ##Waterfall Chart (Summary Report)
 Standard Opportunity Pipeline report using High Chart's Waterfall Chart. Shows sum value of opportunities at what stage of the sales process.
