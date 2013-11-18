@@ -25,9 +25,19 @@
         <datatype>number</datatype>
         <developerName>FORMULA5</developerName>
         <downGroupingContext>OPPORTUNITY_NAME</downGroupingContext>
-        <isActive>true</isActive>
+        <isActive>false</isActive>
         <isCrossBlock>false</isCrossBlock>
         <masterLabel>Stage Duration</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>AGE:MAX</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA6</developerName>
+        <downGroupingContext>OPPORTUNITY_NAME</downGroupingContext>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>Age</masterLabel>
         <scale>2</scale>
     </aggregates>
     <columns>

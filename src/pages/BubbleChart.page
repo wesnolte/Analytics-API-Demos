@@ -3,13 +3,13 @@
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>   
   <script>
 
-	// Load the Google Charting library
+    // Load the Google Charting library
     google.load("visualization", "1", {packages:["corechart"]});
     google.setOnLoadCallback(drawChart);    
   
     function drawChart() {
 
-	 // Fetch the JSON data representing the report
+     // Fetch the JSON data representing the report
       var jsonData = JSON.parse($.ajax({
           beforeSend: function(xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer {!$Api.Session_ID}');
@@ -18,25 +18,23 @@
           dataType:"json",
           async: false
           }).responseText);
-
-	// create the array using the JSON data and report
+    
+    // create the array using the JSON data and report
       var dataArray = [[
-          jsonData.reportExtendedMetadata.groupingColumnInfo[jsonData.reportMetadata.groupingsDown[1].name].label,
-          jsonData.reportExtendedMetadata.aggregateColumnInfo[jsonData.reportMetadata.aggregates[0]].label,
+          jsonData.reportExtendedMetadata.groupingColumnInfo[jsonData.reportMetadata.groupingsDown[0].name].label,
           jsonData.reportExtendedMetadata.aggregateColumnInfo[jsonData.reportMetadata.aggregates[1]].label,
+          jsonData.reportExtendedMetadata.aggregateColumnInfo[jsonData.reportMetadata.aggregates[0]].label,
           jsonData.reportExtendedMetadata.groupingColumnInfo[jsonData.reportMetadata.groupingsDown[0].name].label,
           jsonData.reportExtendedMetadata.aggregateColumnInfo[jsonData.reportMetadata.aggregates[2]].label
       ]];
-      
-      console.log(dataArray);
 
       // Iterate through summary data
       $.each(jsonData.groupingsDown.groupings, function(indexLevel1, groupingLevel1) {
         $.each(groupingLevel1.groupings, function(indexLevel2, groupingLevel2) {
           dataArray.push([
             groupingLevel2.label, 
-            jsonData.factMap[indexLevel1.toString()+"_"+indexLevel2.toString()+"!T"].aggregates[0].value,
             jsonData.factMap[indexLevel1.toString()+"_"+indexLevel2.toString()+"!T"].aggregates[1].value,
+            jsonData.factMap[indexLevel1.toString()+"_"+indexLevel2.toString()+"!T"].aggregates[0].value,
             groupingLevel1.label,
             jsonData.factMap[indexLevel1.toString()+'_'+indexLevel2.toString()+"!T"].aggregates[2].value
           ]);
@@ -45,9 +43,9 @@
       var data = google.visualization.arrayToDataTable(dataArray);
 
       var options = {
-          title: jsonData.attributes.reportName,
-          hAxis: {title: 'Amount'},
-          vAxis: {title: 'Probability'},
+          title: 'Oppotunity Average Stage Duration',
+          hAxis: {title: 'Probability',minValue: 0,maxValue: 100},
+          vAxis: {title: 'Amount'},
           bubble: {textStyle: {fontSize: 11}},
       };      
 
