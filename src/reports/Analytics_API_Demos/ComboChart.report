@@ -3,47 +3,23 @@
     <aggregates>
         <calculatedFormula>AMOUNT:SUM</calculatedFormula>
         <datatype>number</datatype>
-        <developerName>FORMULA1</developerName>
+        <developerName>FORMULA4</developerName>
         <downGroupingContext>ACCOUNT_NAME</downGroupingContext>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
-        <masterLabel>All Opportunities Amount</masterLabel>
+        <masterLabel>Opportunities Amount</masterLabel>
         <scale>2</scale>
     </aggregates>
     <aggregates>
-        <calculatedFormula>Account.Actual__c:SUM</calculatedFormula>
-        <datatype>number</datatype>
-        <developerName>FORMULA2</developerName>
-        <downGroupingContext>ACCOUNT_NAME</downGroupingContext>
+        <calculatedFormula>IF(WON:SUM&gt;0, AMOUNT:SUM, 0)</calculatedFormula>
+        <datatype>currency</datatype>
+        <developerName>FORMULA5</developerName>
+        <downGroupingContext>WON</downGroupingContext>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
-        <masterLabel>Closed Won Opportunities</masterLabel>
+        <masterLabel>Won Opportunities</masterLabel>
         <scale>2</scale>
     </aggregates>
-    <chart>
-        <backgroundColor1>#FFFFFF</backgroundColor1>
-        <backgroundColor2>#FFFFFF</backgroundColor2>
-        <backgroundFadeDir>Diagonal</backgroundFadeDir>
-        <chartSummaries>
-            <axisBinding>y</axisBinding>
-            <column>FORMULA1</column>
-        </chartSummaries>
-        <chartType>VerticalColumn</chartType>
-        <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>true</expandOthers>
-        <groupingColumn>ACCOUNT_NAME</groupingColumn>
-        <location>CHART_TOP</location>
-        <showAxisLabels>true</showAxisLabels>
-        <showPercentage>false</showPercentage>
-        <showTotal>false</showTotal>
-        <showValues>false</showValues>
-        <size>Medium</size>
-        <summaryAxisRange>Auto</summaryAxisRange>
-        <textColor>#000000</textColor>
-        <textSize>12</textSize>
-        <titleColor>#000000</titleColor>
-        <titleSize>18</titleSize>
-    </chart>
     <columns>
         <field>OPPORTUNITY_NAME</field>
     </columns>
@@ -53,11 +29,6 @@
             <operator>notEqual</operator>
             <value></value>
         </criteriaItems>
-        <criteriaItems>
-            <column>STAGE_NAME</column>
-            <operator>notEqual</operator>
-            <value>Closed Lost</value>
-        </criteriaItems>
     </filter>
     <format>Summary</format>
     <groupingsDown>
@@ -65,7 +36,12 @@
         <field>ACCOUNT_NAME</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Combo Chart</name>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>WON</field>
+        <sortOrder>Desc</sortOrder>
+    </groupingsDown>
+    <name>ComboChart</name>
     <params>
         <name>open</name>
         <value>all</value>
@@ -83,6 +59,6 @@
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>CLOSE_DATE</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <interval>INTERVAL_THISMONTH</interval>
     </timeFrameFilter>
 </Report>

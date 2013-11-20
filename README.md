@@ -15,7 +15,7 @@ Bubble chart showing all the open opportunities and the numbers of days since th
 
 ##Combo Chart (Summary Report)
 Combo chart showing the value of all opportunies agains the total amount of the closed won ones.
-![Example Combo Chart](https://dl.dropboxusercontent.com/s/v6zbxoet45q1j7b/ComboChart.png)
+![Example Combo Chart](https://dl.dropboxusercontent.com/s/7i8c7yc6ax1ywf5/ComboChart.png)
 =======
 ##Geomap Chart (Summary Report)
 Geomap chart which shows closed Opportunity revenue, summarised by country.
