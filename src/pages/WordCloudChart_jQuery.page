@@ -1,6 +1,5 @@
 <apex:page showHeader="false" sidebar="false">
 
-
 <link rel="stylesheet" type="text/css" href="http://visapi-gadgets.googlecode.com/svn/trunk/termcloud/tc.css"/>
 <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"/>
 
@@ -34,17 +33,12 @@
       	var value = []
       	value.push(indValue.value, jsonData.factMap[indValue.key+"!T"].aggregates[0].value);
       	dataArray.push(value);
-      	console.log(value)
-
     });
 
       	data = new google.visualization.DataTable();
         data.addColumn('string', 'Label');
         data.addColumn('number', 'Value');
-        //data.addColumn('string', 'Link');
         data.addRows(dataArray);
-
-    	console.log(dataArray);
 
 		var outputDiv = document.getElementById('tcdiv');
         var tc = new TermCloud(outputDiv);
