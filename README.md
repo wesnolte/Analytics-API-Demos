@@ -16,7 +16,7 @@ Bubble chart showing all the open opportunities and the numbers of days since th
 ##Combo Chart (Summary Report)
 Combo chart showing the value of all opportunies agains the total amount of the closed won ones.
 ![Example Combo Chart](https://dl.dropboxusercontent.com/s/7i8c7yc6ax1ywf5/ComboChart.png)
-=======
+
 ##Geomap Chart (Summary Report)
 Geomap chart which shows closed Opportunity revenue, summarised by country.
 ![Example Geomap Chart](http://i.imgur.com/fr6hFpx.png)
@@ -29,6 +29,10 @@ Standard Opportunity Pipeline report using High Chart's Waterfall Chart. Shows s
 ##Spiderweb Chart (Summary Report)
 Spiderweb chart which shows opportunities by owner and stage, with summed values.
 ![Example Spiderweb Chart](http://i.imgur.com/i5KqWLt.png)
+
+##Combination Chart (Matrix Report)
+Standard Opportunity report using High Chart's Combination Chart. Displays sum value of closed won, closed lost and open opportunities in the last 3 months.
+![Example Waterfall Chart](https://dl.dropboxusercontent.com/s/nz37odb5wuo9v0v/CombinationChart.png)
 
 #NVD3 Demos
 ##Stacked Bar Chart (Matrix Report)

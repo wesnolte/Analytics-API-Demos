@@ -1,0 +1,176 @@
+<apex:page showHeader="false" title="Analytics API - Combination Chart" controller="CombinationChartController" >
+
+    <apex:includeScript value="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" />
+    <apex:includeScript value="http://code.highcharts.com/highcharts.js" />
+    <apex:includeScript value="http://code.highcharts.com/highcharts-more.js" />
+    <apex:includeScript value="http://code.highcharts.com/modules/exporting.js" />
+    <apex:includeScript value="http://code.highcharts.com/highcharts.js"/>
+    <apex:includeScript value="http://code.highcharts.com/modules/exporting.js"/>
+    
+    <script>
+        $(document).ready(function() {
+
+            // the id of the Salesforce report
+            var reportId = '{!$CurrentPage.parameters.Id}';
+            
+            if (reportId) {
+                
+                // We'll keep the report data around for the life of the page
+                var report = null;
+                
+                // Fetch the JSON data representing the the report
+                var jsonData = JSON.parse($.ajax({
+                    beforeSend: function(xhr) {
+                      xhr.setRequestHeader('Authorization', 'Bearer {!$Api.Session_ID}');
+                    },
+                    // You'll need a URL parameter key called "reportid" that has a Summary Report id value
+                    url: "/services/data/v29.0/analytics/reports/" + reportId,
+                    dataType:"json",
+                    async: false
+                    }).responseText);
+        
+                report = jsonData;
+                console.log(report); 
+                // We're done with the status
+                $("#statusText").hide();
+                
+                // pass the Salesforce JSON report response to the render chart method
+                renderHighChart(report);
+
+            } else {
+                $("#statusText").text("Need a reportId!");
+            }
+
+        });
+        
+        function renderHighChart(report){
+        
+            // The High Charts options
+            $('#container').highcharts({
+                
+                chart: {
+                },
+                title: {
+                    text: report.reportMetadata.name
+                },
+                xAxis: {
+                    categories: getCategories(report),
+                },
+                tooltip: {
+                    formatter: function() {
+                        var s;
+                        if (this.point.name) { // the pie chart
+                            s = ''+
+                                this.point.name +': '+ this.y +' fruits';
+                        } else {
+                            s = ''+
+                                this.x  +': '+ this.y;
+                        }
+                        return s;
+                    }
+                },
+                labels: {
+                    items: [{
+                        html: 'Opportunities Amount',
+                        style: {
+                            left: '40px',
+                            top: '8px',
+                            color: 'black'
+                        }
+                    }]
+                },
+                series: getDataArray(report),
+            });
+        }
+        
+        // Build the array of data from the report, to use for the chart
+        function getDataArray(report){
+            
+            var dataArray = [];
+            $.each(report.groupingsAcross.groupings, function(index, grouping) {
+                dataArray.push({
+                    "type": 'column',
+                    "name": grouping.label, 
+                    "data": getDataForGroup(report, index, grouping)
+                });
+            });
+            
+            dataArray.push({
+                "type": 'spline',
+                "name": 'Average',
+                "data": getAverageData(report),
+                "marker": {
+                    lineWidth: 2,
+                    lineColor: Highcharts.getOptions().colors[3],
+                    fillColor: 'white'
+                }
+            });
+            
+            dataArray.push({
+                "type": 'pie',
+                "name": 'Total Amount',
+                "data": getPieDataArray(report),
+                "center": [100, 80],
+                "size": 100,
+                "showInLegend": false,
+                "dataLabels": {
+                    enabled: false
+                }
+            });
+
+            
+            return dataArray;
+        }
+        
+        // Method which gets the activity values for each resource
+        function getDataForGroup(report, indexAcross, groupingAcross){
+            var data = [];
+            $.each(report.groupingsDown.groupings, function(indexDown, groupingDown) {
+                data.push(
+                    report.factMap[indexDown.toString() + '!' + indexAcross.toString()].aggregates[0].value
+                );   
+            });
+            return data;
+        }
+        
+        // Method for getting average amounts
+        function getAverageData(report){
+            var data = [];
+            $.each(report.groupingsDown.groupings, function(index, grouping) {
+                data.push(
+                    report.factMap[index.toString() + '!T'].aggregates[1].value
+                );
+            });
+            return data;
+        }
+        
+        // Method for getting amount for the pie
+        function getPieDataArray(report){
+            var dataPieArray = [];
+            $.each(report.groupingsAcross.groupings, function(index, grouping) {
+                dataPieArray.push({
+                    "name": grouping.label, 
+                    "y": report.factMap['T!' + index.toString()].aggregates[0].value,
+                    "color": Highcharts.getOptions().colors[index]
+                });
+            });
+            console.log('DataPie');
+            console.log(dataPieArray);
+            return dataPieArray;
+        }
+        
+        // Method to obtain the activity categories
+        function getCategories(report){
+            var categories = [];
+            $.each(report.groupingsDown.groupings, function(index, grouping) {
+                categories.push(grouping.label);
+            });    
+            return categories;
+        }
+    </script>
+    
+    <h1 id="statusText">Loading data...</h1>
+    
+    <div id="container" style="min-width: 500px; max-width: 800px; height: 600px; margin: 50px auto"></div>
+    
+</apex:page>
