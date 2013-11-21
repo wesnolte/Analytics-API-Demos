@@ -22,8 +22,8 @@ Geomap chart which shows closed Opportunity revenue, summarised by country.
 ![Example Geomap Chart](http://i.imgur.com/fr6hFpx.png)
 
 ##Word Cloud Chart (Summary Report)
-Geomap chart which shows closed Opportunity revenue, summarised by Industry.
-![Example Word Cloud Chart](http://imgur.com/miyuJtf)
+Word Cloud chart which shows closed Opportunity revenue, summarised by Industry.
+![Example Word Cloud Chart](http://i.imgur.com/miyuJtf.png)
 
 
 
