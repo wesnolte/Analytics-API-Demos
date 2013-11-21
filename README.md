@@ -25,8 +25,6 @@ Geomap chart which shows closed Opportunity revenue, summarised by country.
 Word Cloud chart which shows closed Opportunity revenue, summarised by Industry.
 ![Example Word Cloud Chart](http://i.imgur.com/miyuJtf.png)
 
-
-
 #Highchart Demos
 ##Waterfall Chart (Summary Report)
 Standard Opportunity Pipeline report using High Chart's Waterfall Chart. Shows sum value of opportunities at what stage of the sales process.
