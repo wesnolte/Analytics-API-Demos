@@ -1,6 +1,6 @@
 ![Header Image](https://dl.dropboxusercontent.com/u/4151695/html/Analytics%20API/analytics-api.jpg)
 
-Inspired by a post by the [PM for Analytics](https://medium.com/p/c87517ab52b1) at SFDC. Although I'm a great fan of D3 the complexity of the library makes it difficult for beginners so I've created a few examples of using the Analytics API with popular JS charting libraries.
+Inspired by a post by the [PM for Analytics](https://medium.com/p/c87517ab52b1) at SFDC. Although I'm a great fan of D3 the complexity of the library makes it difficult for beginners so [us tquilites](http://tquila.com) have created a few examples of using the Analytics API with popular JS charting libraries.
 
 #Google Charting API Demos
 ##Stacked Bar Chart (Matrix Report)
@@ -20,6 +20,10 @@ Combo chart showing the value of all opportunies agains the total amount of the 
 ##Geomap Chart (Summary Report)
 Geomap chart which shows closed Opportunity revenue, summarised by country.
 ![Example Geomap Chart](http://i.imgur.com/fr6hFpx.png)
+
+##Word Cloud Chart (Summary Report)
+Word Cloud chart which shows closed Opportunity revenue, summarised by Industry.
+![Example Word Cloud Chart](http://i.imgur.com/miyuJtf.png)
 
 #Highchart Demos
 ##Waterfall Chart (Summary Report)
